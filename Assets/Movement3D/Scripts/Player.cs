@@ -7,12 +7,18 @@ namespace Movement3D
         [Header("Attrubutes")]
         [SerializeField] private float moveSpeed = 100;
         [SerializeField] private float mouseSpeed = 100;
+        [SerializeField] private float jumpVelocity = 10;
+        [SerializeField] private float groundDistance = 0.4f;
         [SerializeField] private float gravityForce = 1000;
 
         [Header("References")]
         [SerializeField] private Rigidbody rb;
+        [SerializeField] private Transform cameraTransform, groundCheck;
+        [SerializeField] private LayerMask groundMask;
 
         private Vector2 rotation = new Vector2();
+
+        private bool grounded;
 
         private void Start()
         {
@@ -21,10 +27,16 @@ namespace Movement3D
 
         private void Update()
         {
+            CheckGrounded();
             Move();
+            Jump();
             Look();
         }
 
+        private void CheckGrounded()
+        {
+            grounded = Physics.CheckSphere(groundCheck.position, groundDistance, groundMask);
+        }
 
         private void Move()
         {
@@ -38,6 +50,16 @@ namespace Movement3D
             // Calculate rigidbody velocity based on input
             Vector3 velocity = (transform.right * x + transform.forward * z) * moveSpeed;
             rb.velocity = new Vector3(velocity.x, rb.velocity.y, velocity.z);
+        }
+
+        private void Jump()
+        {
+            // If grounded and jump key pressed
+            if (grounded && Input.GetButton("Jump"))
+            {
+                // Set y velocity to jump force
+                rb.velocity = new Vector3(rb.velocity.x, jumpVelocity, rb.velocity.z);
+            }
         }
 
         private void Look()
