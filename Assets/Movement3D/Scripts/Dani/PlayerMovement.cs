@@ -5,7 +5,7 @@ public class PlayerMovement : MonoBehaviour
 {    
     [Header("Attributes")]
     [SerializeField] private float jumpForce = 550;
-    [SerializeField] private float maxSpeed = 10;
+    [SerializeField] private float maxSpeed = 20;
     [SerializeField] private float moveSpeed = 4500;
     [SerializeField] private float maxSlopeAngle = 35;
     [SerializeField] private float counterMovement = 0.175f;
