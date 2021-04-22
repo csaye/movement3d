@@ -195,7 +195,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 69c1dfa1eab1a4467ae7b6018543ba83, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  player: {fileID: 1771495910}
+  playerTransform: {fileID: 1837428352}
 --- !u!1 &412766539
 GameObject:
   m_ObjectHideFlags: 0
@@ -1606,12 +1606,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 13ad99dc6bc3545078945f2413995f16, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  whatIsGrappleable:
+  lineRenderer: {fileID: 1170917344}
+  grappleableMask:
     serializedVersion: 2
     m_Bits: 256
-  gunTip: {fileID: 1082080694}
-  cam: {fileID: 408506985}
-  player: {fileID: 1837428352}
+  gunTipTransform: {fileID: 1082080694}
+  camTransform: {fileID: 408506985}
+  playerTransform: {fileID: 1837428352}
 --- !u!1 &1361932860
 GameObject:
   m_ObjectHideFlags: 0
@@ -1964,7 +1965,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e4dbc468bd916474ba141bbc2f9239cb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  grappling: {fileID: 1170917345}
+  grapplingGun: {fileID: 1170917345}
 --- !u!1 &1771495909
 GameObject:
   m_ObjectHideFlags: 0
@@ -2121,19 +2122,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0db6c49085746427986bb5e6f185512a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerCam: {fileID: 408506985}
-  orientation: {fileID: 163626636}
+  jumpForce: 550
+  maxSpeed: 10
   moveSpeed: 4500
-  maxSpeed: 20
-  grounded: 0
-  whatIsGround:
-    serializedVersion: 2
-    m_Bits: 256
-  counterMovement: 0.175
   maxSlopeAngle: 35
+  counterMovement: 0.175
   slideForce: 400
   slideCounterMovement: 0.2
-  jumpForce: 550
+  rb: {fileID: 1837428353}
+  camTransform: {fileID: 408506985}
+  orientation: {fileID: 163626636}
+  groundMask:
+    serializedVersion: 2
+    m_Bits: 256
 --- !u!43 &1903941822
 Mesh:
   m_ObjectHideFlags: 0
