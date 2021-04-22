@@ -5,7 +5,12 @@ namespace Movement3D
     public class Player : MonoBehaviour
     {
         [Header("Attrubutes")]
+        [SerializeField] private float moveSpeed = 100;
         [SerializeField] private float mouseSpeed = 100;
+        [SerializeField] private float gravityForce = 1000;
+
+        [Header("References")]
+        [SerializeField] private Rigidbody rb;
 
         private Vector2 rotation = new Vector2();
 
@@ -16,7 +21,23 @@ namespace Movement3D
 
         private void Update()
         {
+            Move();
             Look();
+        }
+
+
+        private void Move()
+        {
+            // Gravity
+            rb.AddForce(Vector3.down * gravityForce * Time.deltaTime);
+
+            // Get horizontal and vertical input
+            float x = Input.GetAxis("Horizontal");
+            float z = Input.GetAxis("Vertical");
+
+            // Calculate rigidbody velocity based on input
+            Vector3 velocity = (transform.right * x + transform.forward * z) * moveSpeed;
+            rb.velocity = new Vector3(velocity.x, rb.velocity.y, velocity.z);
         }
 
         private void Look()
